@@ -4,51 +4,35 @@
 
     switch($content)
     {
-            case "메뉴1":
+            case "학생식당":
                 echo '
                 {
                     "message":
                     {
-                        "text": "메뉴1을 선택하셨습니다."
+                        "text": "학생식당을 선택하였습니다.."
                     },
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
+                        "buttons": ["학생식당", "교직원식당", ""]
                     }
                 }';
             break;
 
-        case "메뉴2":
+        case "교직원식당":
             echo '
                 {
                     "message":
                     {
-                        "text": "메뉴2를 선택하셨습니다."
+                        "text": "교직원식당을 선택하였습니다.."
                     },
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
+                        "buttons": ["학생식당", "교직원식당", ""]
                     }
                 }';
             break;
-
-        case "메뉴3":
-            echo '
-                {
-                    "message":
-                    {
-                        "text": "메뉴3을 선택하셨습니다."
-                    },
-                    "keyboard":
-                    {
-                        "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
-                    }
-                }';
-            break;
-
         default:
             echo '
                 {
@@ -59,7 +43,7 @@
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["메뉴1", "메뉴2", "메뉴3"]
+                        "buttons": ["학생식당", "교직원식당", ""]
                     }
                 }';
             break;
