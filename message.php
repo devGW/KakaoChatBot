@@ -24,12 +24,12 @@
       // $tM = $tM.$key[$i]." : ".$result_json[$key[$i]][data][$i]."\n";
       $title[$i] = $key[$i];
       if(strpos($result_json[$key[$i]][data][0], "돈까스") !== false){
-          $mainMenu[$i] = mb_substr($result_json[$key[$i]][data][0],0,8,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],28,8,'UTF-8').', '.
-          mb_substr($result_json[$key[$i]][data][0],56,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],84,12,'UTF-8').', '.
-          mb_substr($result_json[$key[$i]][data][0],117,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],145,7,'UTF-8');
+          $mainMenu[$i] = trim(mb_substr($result_json[$key[$i]][data][0],0,18,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],38,8,'UTF-8')).', '.
+          mb_substr($result_json[$key[$i]][data][0],66,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],94,12,'UTF-8').', '.
+          mb_substr($result_json[$key[$i]][data][0],127,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],155,7,'UTF-8');
 
       } else {
-        $mainMenu[$i] = $result_json[$key[$i]][data][0];
+        $mainMenu[$i] = trim($result_json[$key[$i]][data][0]);
       }
 
     }
@@ -84,7 +84,7 @@
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["menu1", "menu2", "menu3"]
+                        "buttons": ["학생식당", "교직원식당", "menu3"]
                     }
                 }';
             break;
@@ -98,7 +98,7 @@
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["Student", "Professor", "menu3"]
+                        "buttons": ["학생식당", "교직원식당", "menu3"]
                     }
                 }';
             break;
