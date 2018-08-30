@@ -10,34 +10,67 @@
     $key = array();
     $key = array_keys($result_json);
 
+    $data = json_decode(file_get_contents('php://input'), true);
+    $content = $data["content"];
+    $tt = date(Ymd);
+    $json = file_get_contents("./".$tt."menu.json");
+    $result_json = json_decode($json, true);
+    $key = array();
+    $key = array_keys($result_json);
+
+    $title = array();
+    $mainMenu = array();
+    for($i=0; $i<count($key);$i++){
+      // $tM = $tM.$key[$i]." : ".$result_json[$key[$i]][data][$i]."\n";
+      $title[$i] = $key[$i];
+      if(strpos($result_json[$key[$i]][data][0], "돈까스") !== false){
+          $mainMenu[$i] = mb_substr($result_json[$key[$i]][data][0],0,8,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],28,8,'UTF-8').', '.
+          mb_substr($result_json[$key[$i]][data][0],56,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],84,12,'UTF-8').', '.
+          mb_substr($result_json[$key[$i]][data][0],117,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],145,7,'UTF-8');
+
+      } else {
+        $mainMenu[$i] = $result_json[$key[$i]][data][0];
+      }
+
+    }
+    $studentMenu = "";
+    $professorMenu ="";
+    for ($i=0; $i < count($key); $i++) {
+      if(strpos($title[$i], "특정식") !==false){
+        $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n";
+      } else {
+        $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
+      }
+    }
+
 
     switch($content)
     {
-            case "Student":
+            case "학생식당":
                 echo '
                 {
                     "message":
                     {
-                        "text": "메뉴1을 선택하셨습니다.'.$result_json[뚝배기][data][0].'"
+                        "text": "'.$studentMenu.'"
                     },
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["Student", "Professor", "menu3"]
+                        "buttons": ["학생식당", "교직원식당", "menu3"]
                     }
                 }';
             break;
-        case "Professor":
+        case "교직원식당":
             echo '
                 {
                     "message":
                     {
-                        "text": "메뉴2를 선택하셨습니다."
+                        "text": "'.$professorMenu.'"
                     },
                     "keyboard":
                     {
                         "type": "buttons",
-                        "buttons": ["Student", "Professor", "menu3"]
+                        "buttons": ["학생식당", "교직원식당", "menu3"]
                     }
                 }';
             break;
