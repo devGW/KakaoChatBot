@@ -1,4 +1,5 @@
 <?php
+    header("Refresh:10");
     header('Content-Type: application/json;charset=UTF-8');
     include "simple_html_dom.php";
     if(!$_GET[page]) $page = 1;
