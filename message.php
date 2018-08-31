@@ -4,6 +4,9 @@
 
 
     $tt = date(Ymd);
+    $ch = true;
+    $isFile = file_exists("./".$tt."menu.json");
+    if($isFile){
 
     $json = file_get_contents("./".$tt."menu.json");
     $result_json = json_decode($json, true);
@@ -19,6 +22,7 @@
           $mainMenu[$i] = trim(mb_substr($result_json[$key[$i]][data][0],0,18,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],38,8,'UTF-8')).', '.
           mb_substr($result_json[$key[$i]][data][0],66,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],94,12,'UTF-8').', '.
           mb_substr($result_json[$key[$i]][data][0],127,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],155,7,'UTF-8');
+          $ch = false;
           //문제 발생시 strpos 이용
       } else {
         $mainMenu[$i] = trim($result_json[$key[$i]][data][0]);
@@ -27,7 +31,7 @@
     }
     $studentMenu = "";
     $professorMenu ="";
-    $info = "창업동아리 : NULL \n\n 가입문의 : 010480853825 \n\n 제작 : 정건우(컴공)";
+    $info = "창업동아리 : NULL \\n\\n가입문의 : 상담원 전환 클릭 \\n\\n제작 : https://github.com/devGW";
     for ($i=0; $i < count($key); $i++) {
       if(strpos($title[$i], "특정식") !==false){
         $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n";
@@ -35,10 +39,15 @@
         $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       }
     }
-
-
-
-
+  } else {
+    $studentMenu = "식당메뉴가 업로드 되지 않았습니다.";
+    $professorMenu = "식당메뉴가 업로드 되지 않았습니다.";
+  }
+  if($ch){
+    $studentMenu = "식당메뉴가 업로드 되지 않았습니다.";
+    $professorMenu = "식당메뉴가 업로드 되지 않았습니다.";
+    $ch = true;
+  }
 
     switch($content)
     {
@@ -75,7 +84,7 @@
                 {
                     "message":
                     {
-                        "text": "창업동아리 : NULL\n\n가입&피드백 : 01048085382\n\n제작 : 정건우(컴공)"
+                        "text": "'.$info.'"
                     },
                     "keyboard":
                     {
