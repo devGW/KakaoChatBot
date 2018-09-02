@@ -31,7 +31,7 @@
     }
     $studentMenu = "";
     $professorMenu ="";
-    $info = "창업동아리 : NULL \\n\\n가입문의 : 상담원 전환 클릭 \\n\\n제작 : https://github.com/devGW";
+
     for ($i=0; $i < count($key); $i++) {
       if(strpos($title[$i], "특정식") !==false){
         $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n";
@@ -48,7 +48,7 @@
     $professorMenu = "식당메뉴가 업로드 되지 않았습니다.";
     $ch = true;
   }
-
+  $info = "창업동아리 : NULL \\n\\n가입문의 : 상담원 전환 클릭 \\n\\n제작 : https://github.com/devGW";
     switch($content)
     {
             case "학생식당":
