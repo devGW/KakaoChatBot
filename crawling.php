@@ -1,5 +1,5 @@
 <?php
-    header("Refresh:10");
+    header("Refresh:300");
     header('Content-Type: application/json;charset=UTF-8');
     include "simple_html_dom.php";
     if(!$_GET[page]) $page = 1;
@@ -49,9 +49,10 @@
     {
 		$i = 0;
 		foreach($html->find('tr') as $article) {
-			$json[$article->find('th', 0)->plaintext]['data'] = array($article->find('td', 0)->plaintext);
+			$json[$article->find('th', 0)->plaintext."M".$i]['data'] = array($article->find('td', 0)->plaintext);
 			$i++;
-		}
-		file_put_contents("./".$tt."menu.json", json_encode2($json));
+      file_put_contents("./".$tt."menu.json", json_encode2($json));
+    }
+
     }
 ?>

@@ -16,8 +16,8 @@
     $title = array();
     $mainMenu = array();
     for($i=0; $i<count($key);$i++){
-      // $tM = $tM.$key[$i]." : ".$result_json[$key[$i]][data][$i]."\n";
-      $title[$i] = $key[$i];
+      $temp = strpos($key[$i],"M");
+      $title[$i] = mb_substr($key[$i], 0,$temp/3);
       if(strpos($result_json[$key[$i]][data][0], "돈까스") !== false){
           $mainMenu[$i] = trim(mb_substr($result_json[$key[$i]][data][0],0,18,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],38,8,'UTF-8')).', '.
           mb_substr($result_json[$key[$i]][data][0],66,7,'UTF-8').', '.mb_substr($result_json[$key[$i]][data][0],94,12,'UTF-8').', '.
