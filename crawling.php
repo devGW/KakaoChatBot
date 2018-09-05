@@ -51,7 +51,7 @@
 		foreach($html->find('tr') as $article) {
 			$json[$article->find('th', 0)->plaintext."M".$i]['data'] = array($article->find('td', 0)->plaintext);
 			$i++;
-      file_put_contents("./".$tt."menu.json", json_encode2($json));
+      file_put_contents("./univMenu/".$tt."menu.json", json_encode2($json));
     }
 
     }
