@@ -35,7 +35,7 @@ if($isUniv){
     for($i=0; $i<count($key);$i++){
       $temp = strpos($key[$i],"M");
       $title[$i] = mb_substr($key[$i], 0,$temp/3);
-      if(strpos($result_univJson[$key[$i]][data][0], "돈까스") !== false){
+      if(strpos($result_univJson[$key[$i]][data][0], "치킨돈까스") !== false){
           $mainMenu[$i] = trim(mb_substr($result_univJson[$key[$i]][data][0],0,18,'UTF-8').', '.mb_substr($result_univJson[$key[$i]][data][0],38,8,'UTF-8')).', '.
           mb_substr($result_univJson[$key[$i]][data][0],66,7,'UTF-8').', '.mb_substr($result_univJson[$key[$i]][data][0],94,12,'UTF-8').', '.
           mb_substr($result_univJson[$key[$i]][data][0],127,7,'UTF-8').', '.mb_substr($result_univJson[$key[$i]][data][0],155,7,'UTF-8');
@@ -56,8 +56,11 @@ if($isUniv){
 
       if(strpos($dormiTitle[$i], "조식") !==false){
           $dormiBreakMenu = $dormiTitle[$i]." : ".$dormiMainMenu[$i]."\\n";
-      } else {
+      } else if(strpos($dormiTitle[$i], "석식") !==false){
           $dormiDinnerMenu = $dormiTitle[$i]." : ".$dormiMainMenu[$i]."\\n";
+      } else {
+        $dormiBreakMenu = "식당메뉴가 업로드 되지 않았습니다."
+        $dormiDinnerMenu = "식당메뉴가 업로드 되지 않았습니다."
       }
 
     }
