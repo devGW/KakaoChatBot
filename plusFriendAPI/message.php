@@ -1,7 +1,7 @@
 <?php
 $data = json_decode(file_get_contents('php://input'), true);
 $content = $data["content"];
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 $tt = date(Ymd);
 $isUniv = file_exists("./univMenu/".$tt."menu.json");
 $isDormi = file_exists("./dormiMenu/".$tt."dormitoryMenu.json");
@@ -42,7 +42,7 @@ if($isUniv){
 }
 
 if($isDormi){
-  
+
     $dormiJson = file_get_contents("./dormiMenu/".$tt."dormitoryMenu.json");
     $result_dormiJson = json_decode($dormiJson, true);
 
