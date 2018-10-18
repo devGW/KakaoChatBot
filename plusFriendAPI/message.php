@@ -3,6 +3,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $content = $data["content"];
 header('Content-Type: application/json; charset=utf-8');
 $tt = date(Ymd);
+$today = date(Y/m/d);
 $isUniv = file_exists("./univMenu/".$tt."menu.json");
 $isDormi = file_exists("./dormiMenu/".$tt."dormitoryMenu.json");
 
@@ -31,14 +32,14 @@ if($isUniv){
         $mainMenu[$i] = trim($result_univJson[$key[$i]][data][0]);
       }
       if(strpos($title[$i], "특정식") !==false){
-          $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n";
+          $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n".$today;
       } else {
-          $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
+          $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n".$today;
       }
     }
 } else {
-    $studentMenu = "식당메뉴가 업로드 되지 않았습니다.";
-    $professorMenu = "식당메뉴가 업로드 되지 않았습니다.";
+    $studentMenu = "학식메뉴가 업로드 되지 않았습니다.\\n\\n".$today;
+    $professorMenu = "교직원식당 메뉴가 업로드 되지 않았습니다.\\n\\n".$today;
 }
 
 if($isDormi){
@@ -65,8 +66,8 @@ if($isDormi){
       } else if(strpos($dormiTitle[$i], "석식") !==false){
           $dormiDinnerMenu = $dormiTitle[$i]." : ".$dormiMainMenu[$i]."\\n";
       } else {
-        $dormiBreakMenu = "식당메뉴가 업로드 되지 않았습니다.";
-        $dormiDinnerMenu = "식당메뉴가 업로드 되지 않았습니다.";
+        $dormiBreakMenu = "기숙사 점심 메뉴가 업로드 되지 않았습니다.";
+        $dormiDinnerMenu = "기숙사 저녁 메뉴가 업로드 되지 않았습니다.\\n\\n".$today;
       }
     }
 }
