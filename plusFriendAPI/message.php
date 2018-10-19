@@ -3,7 +3,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $content = $data["content"];
 header('Content-Type: application/json; charset=utf-8');
 $tt = date(Ymd);
-$today = date(Y/m/d);
+$today = date("Y/m/d");
 $isUniv = file_exists("./univMenu/".$tt."menu.json");
 $isDormi = file_exists("./dormiMenu/".$tt."dormitoryMenu.json");
 
@@ -32,9 +32,10 @@ if($isUniv){
         $mainMenu[$i] = trim($result_univJson[$key[$i]][data][0]);
       }
       if(strpos($title[$i], "특정식") !==false){
-          $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n".$today;
+
+           $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       } else {
-          $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n".$today;
+           $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       }
     }
 } else {
@@ -79,7 +80,7 @@ switch($content)
     {
         "message":
         {
-            "text": "'.$studentMenu.'"
+            "text": "'.$studentMenu.$today.'"
             },
             "keyboard":
             {
@@ -93,7 +94,7 @@ switch($content)
    {
       "message":
       {
-          "text": "'.$professorMenu.'"
+          "text": "'.$professorMenu.$today.'"
           },
           "keyboard":
           {
@@ -121,7 +122,7 @@ switch($content)
            {
               "message":
               {
-                  "text": "'.$dormiBreakMenu."\\n".$dormiDinnerMenu.'"
+                  "text": "'.$dormiBreakMenu."\\n".$dormiDinnerMenu.$today.'"
                   },
                   "keyboard":
                   {
