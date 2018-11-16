@@ -33,14 +33,14 @@ if($isUniv){
       }
       if(strpos($title[$i], "특정식") !==false){
 
-           $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
+           $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n날짜 : ";
       } else {
            $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       }
     }
 } else {
-    $studentMenu = "학식메뉴가 업로드 되지 않았습니다.\\n\\n".$today;
-    $professorMenu = "교직원식당 메뉴가 업로드 되지 않았습니다.\\n\\n".$today;
+    $studentMenu = "학식메뉴가 업로드 되지 않았습니다.\\n\\n";
+    $professorMenu = "교직원식당 메뉴가 업로드 되지 않았습니다.\\n\\n";
 }
 
 if($isDormi){
@@ -80,7 +80,7 @@ switch($content)
     {
         "message":
         {
-            "text": "'.$studentMenu.$today.'"
+            "text": "'.$studentMenu."날짜 : ".$today.'"
             },
             "keyboard":
             {
@@ -94,7 +94,7 @@ switch($content)
    {
       "message":
       {
-          "text": "'.$professorMenu.$today.'"
+          "text": "'.$professorMenu."날짜 : ".$today.'"
           },
           "keyboard":
           {
@@ -122,7 +122,7 @@ switch($content)
            {
               "message":
               {
-                  "text": "'.$dormiBreakMenu."\\n".$dormiDinnerMenu.$today.'"
+                  "text": "'.$dormiBreakMenu."\\n".$dormiDinnerMenu."\\n날짜 : ".$today.'"
                   },
                   "keyboard":
                   {
