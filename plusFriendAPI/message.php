@@ -33,7 +33,7 @@ if($isUniv){
       }
       if(strpos($title[$i], "특정식") !==false){
 
-           $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\";
+           $professorMenu = $professorMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       } else {
            $studentMenu = $studentMenu.$title[$i]." : ".$mainMenu[$i]."\\n\\n";
       }
